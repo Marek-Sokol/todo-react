@@ -1,15 +1,15 @@
 // import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
 import NotFound from "./routes/NotFound";
-import ToDoList from "./routes/ToDoList";
-import Home from "./routes/Home";
+import ListDetailView from "./routes/ListDetailView";
+import HomeView from "./routes/HomeView";
 
 export default function Router() {
   return (
     // <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/:id" element={<ToDoList />} />
+        <Route path="/" element={<HomeView />} />
+        <Route path="/:id" element={<ListDetailView />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     // {/* </BrowserRouter> */}
