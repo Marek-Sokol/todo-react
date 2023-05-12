@@ -2,6 +2,7 @@ import {TodoItem} from '../types'
 import TrashIcon from '../components/base/TrashIcon'
 import {useQueryClient, useMutation} from "@tanstack/react-query"
 import {deleteItem, updateItem} from '../api/axios'
+import toast from 'react-hot-toast';
 
 type Props = {
   item: TodoItem;
@@ -15,8 +16,8 @@ const TodoItemBox: React.FC<Props>  = ({ item }) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['getList'] })
     },
-    onError: (err) => {
-      console.log({err})
+    onError: () => {
+      toast('An error occured while updating item')
     }
   })
 
@@ -25,8 +26,8 @@ const TodoItemBox: React.FC<Props>  = ({ item }) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['getList'] })
     },
-    onError: (err) => {
-      console.log({err})
+    onError: () => {
+      toast('An error occured while deleting item')
     }
   })
 
@@ -52,7 +53,9 @@ const TodoItemBox: React.FC<Props>  = ({ item }) => {
         <section className="text-mist">
           {item.content}
         </section>
-        <section className="text-purpleback text-sm">{item.deadline}</section>
+        <section className="text-purpleback text-sm">
+          {`${new Date(item.deadline).toDateString()} ${new Date(item.deadline).toLocaleTimeString()}`}
+        </section>
       </div>
       <TrashIcon
         className="cursor-pointer text-white hover:text-red-700 transition-all ease-in-out delay-150"

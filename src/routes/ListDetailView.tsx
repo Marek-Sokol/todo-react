@@ -23,12 +23,12 @@ const ListDetailView: React.FC = () => {
 
   const queryClient = useQueryClient()
 
-  if (listId == null) navigate('/404')
-
   const { isLoading, error, data: list } = useQuery({
     queryKey: ["getList"],
     queryFn: () => getList(listId as string),
   });
+
+  if (listId == null || error != null) navigate('/404')
 
   const addItemMutation = useMutation({
     mutationFn: addItem,
@@ -41,8 +41,6 @@ const ListDetailView: React.FC = () => {
       console.log({err})
     }
   })
-
-  if (error) return <p>An error has occurred: " + error.message</p>
 
   const handleSubmit = (newItem: TodoItem) => {
     addItemMutation.mutate({listId: listId as string, item: {...newItem, completed: false}})
@@ -87,7 +85,7 @@ const ListDetailView: React.FC = () => {
       />
       {modalOpened && (
         <Modal closeFn={() => setModalOpened(false)}>
-          <AddItemForm onSubmited={handleSubmit}/>
+          <AddItemForm onSubmited={handleSubmit} isSubmiting={addItemMutation.isLoading}/>
         </Modal>
       )}
     </>

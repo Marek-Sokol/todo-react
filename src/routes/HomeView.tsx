@@ -7,6 +7,7 @@ import {useState} from 'react'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import toast from 'react-hot-toast';
 
 const schema = yup.object({
   title: yup.string().trim()
@@ -26,12 +27,11 @@ const HomeView: React.FC = () => {
   const mutation = useMutation({
     mutationFn: addList,
     onSuccess: () => {
-      // Invalidate and refetch
       setModalOpened(false)
       queryClient.invalidateQueries({ queryKey: ['allLists'] })
     },
-    onError: (err) => {
-      console.log({err})
+    onError: () => {
+      toast('An error occured while creating list')
     }
   })
 
@@ -39,7 +39,7 @@ const HomeView: React.FC = () => {
     resolver: yupResolver(schema)
   })
 
-  if (error) return <p>An error has occurred: " + error.message</p>
+  if (error) return <h1 className="text-white text-2xl w-full align-middle">There was a problem loading this content</h1>
 
   return (
     <>

@@ -5,6 +5,7 @@ import { TodoItem } from "../types";
 
 type Props = {
   onSubmited: (item: TodoItem) => void
+  isSubmiting: boolean
 }
 
 const schema = yup.object({
@@ -20,7 +21,7 @@ const schema = yup.object({
     .required('This field is required')
 }).required()
 
-const AddItemForm: React.FC<Props> = ({onSubmited}) => {
+const AddItemForm: React.FC<Props> = ({onSubmited, isSubmiting}) => {
   const { register, handleSubmit, formState: { errors } } = useForm<TodoItem>({
     resolver: yupResolver(schema)
   })
@@ -56,7 +57,7 @@ const AddItemForm: React.FC<Props> = ({onSubmited}) => {
         <p className="text-red-700">{errors.deadline?.message}</p>
       </section>
 
-      <button type="submit" className="button-style">
+      <button type="submit" className="button-style" disabled={isSubmiting}>
         Create
       </button>
     </form>

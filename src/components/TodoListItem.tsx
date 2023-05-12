@@ -3,6 +3,7 @@ import { TodoList } from '../types';
 import TrashIcon from '../components/base/TrashIcon'
 import {useQueryClient, useMutation} from "@tanstack/react-query"
 import {deleteList} from '../api/axios'
+import toast from 'react-hot-toast';
 
 type Props = {
   list: TodoList;
@@ -17,8 +18,8 @@ const TodoListItem: React.FC<Props> = ({ list }) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['allLists'] })
     },
-    onError: (err) => {
-      console.log({err})
+    onError: () => {
+      toast(`An error occured while deleting list "${list?.title ?? ''}"`)
     }
   })
 
