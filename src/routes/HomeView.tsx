@@ -59,6 +59,7 @@ const HomeView: React.FC = () => {
         )}
       </div>
       <PlusButton
+        className="fixed bottom-4 right-4"
         onClick={() => setModalOpened(true)}
       />
       {modalOpened && (
@@ -76,7 +77,7 @@ const HomeView: React.FC = () => {
               />
               <p className="text-red-700">{errors.title?.message}</p>
             </section>
-            <button type="submit" className="button-style">
+            <button type="submit" className="button-style w-full">
               Create
             </button>
           </form>

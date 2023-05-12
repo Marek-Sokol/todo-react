@@ -7,5 +7,5 @@
 }
 
 .button-style {
-  @apply btn hover:bg-purplerain-800 bg-purplerain w-full;
+  @apply btn text-white hover:bg-purplerain-800 bg-purplerain;
 }

@@ -1,8 +1,9 @@
-import {useState} from 'react';
+import {useState, useMemo} from 'react';
 import {useParams, useNavigate} from 'react-router-dom';
 import {useQuery, useQueryClient, useMutation} from "@tanstack/react-query"
 import {getList, addItem} from '../api/axios'
 import PlusButton from '../components/base/PlusButton'
+import SearchInput from '../components/base/SearchInput'
 import TodoItemBox from '../components/TodoItemBox'
 import AddItemForm from '../components/AddItemForm'
 import Modal from '../components/base/Modal'
@@ -17,6 +18,8 @@ enum ActiveGroupEnum {
 const ListDetailView: React.FC = () => {
   const [modalOpened, setModalOpened] = useState<boolean>(false)
   const [activeGroup, setActiveGroup] = useState<ActiveGroupEnum>(ActiveGroupEnum.ALL)
+
+  // const activeGroupitems = useMemo(() => {}, [])
 
   const navigate = useNavigate()
   const {id: listId} = useParams()
@@ -53,7 +56,7 @@ const ListDetailView: React.FC = () => {
           {Object.values(ActiveGroupEnum).map((val) => (
             <button
               key={val}
-              className={`btn w-24 hover:bg-purplerain-800 ${activeGroup === val ? 'bg-purplerain-800' : 'bg-purplerain'}`}
+              className={`btn w-24 text-white hover:bg-purplerain-800 ${activeGroup === val ? 'bg-purplerain-800' : 'bg-purplerain'}`}
               onClick={() => setActiveGroup(val)}
             >
               {val}
@@ -76,12 +79,25 @@ const ListDetailView: React.FC = () => {
             ))
           )
           : (
-            <p className="w-full pt-4 text-white font-bold text-center">There are no items in this list yet</p>
+            <>
+              <p className="w-full mt-16 text-white font-bold text-center">There are no items in this list yet</p>
+              <button
+                className="button-style m-auto mt-5"
+                onClick={() => setModalOpened(true)}
+              >
+                Create your firs item
+              </button>
+            </>
           )
         )}
       </div>
       <PlusButton
+        className="fixed bottom-4 right-4"
         onClick={() => setModalOpened(true)}
+      />
+      <SearchInput
+        className="fixed bottom-20 right-4"
+        onChange={(e) => console.log(e)}
       />
       {modalOpened && (
         <Modal closeFn={() => setModalOpened(false)}>

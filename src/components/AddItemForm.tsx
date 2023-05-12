@@ -57,7 +57,7 @@ const AddItemForm: React.FC<Props> = ({onSubmited, isSubmiting}) => {
         <p className="text-red-700">{errors.deadline?.message}</p>
       </section>
 
-      <button type="submit" className="button-style" disabled={isSubmiting}>
+      <button type="submit" className="button-style w-full" disabled={isSubmiting}>
         Create
       </button>
     </form>

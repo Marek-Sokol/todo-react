@@ -59,8 +59,8 @@ const TodoItemBox: React.FC<Props>  = ({ item }) => {
       </div>
       <TrashIcon
         className="cursor-pointer text-white hover:text-red-700 transition-all ease-in-out delay-150"
-        width={30}
-        height={30}
+        width={25}
+        height={25}
         disabled={completeItemMutation.isLoading || deleteItemMutation.isLoading}
         onClick={() =>
           deleteItemMutation.mutate({
