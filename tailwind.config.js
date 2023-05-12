@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        mist: '#EDEEF7',
+        mist: '#f3f5f8',
         purplerain: {
             DEFAULT: '#6D2DED',
             800: '#8f68db',
@@ -18,6 +18,9 @@ export default {
             800: '#291156',
         },
       },
+      screens: {
+        'xs': '375px',
+      }
     },
   },
   plugins: [require("daisyui")],

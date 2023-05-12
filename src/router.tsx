@@ -9,7 +9,7 @@ export default function Router() {
     // <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomeView />} />
-        <Route path="/:id" element={<ListDetailView />} />
+        <Route path="/list/:id" element={<ListDetailView />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     // {/* </BrowserRouter> */}

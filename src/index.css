@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.input-style {
+  @apply input input-ghost input-bordered focus:outline-0 focus:border-purplerain w-full;
+}
+
+.button-style {
+  @apply btn hover:bg-purplerain-800 bg-purplerain w-full;
+}

@@ -6,6 +6,7 @@ export interface TodoList {
 
 export interface TodoItem {
   id: string;
+  listId: string;
   title: string;
   content: string;
   deadline: string;
