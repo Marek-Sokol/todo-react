@@ -1,7 +1,7 @@
-import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
-import { TodoItem } from "../types";
+import {useForm} from "react-hook-form"
+import {yupResolver} from '@hookform/resolvers/yup'
+import * as yup from "yup"
+import {TodoItem} from "../types"
 
 type Props = {
   onSubmited: (item: TodoItem) => void
@@ -18,12 +18,12 @@ const schema = yup.object({
   deadline: yup.date()
     .typeError("${value}")
     .min(new Date(), 'Please select a date in future')
-    .required('This field is required')
+    .required('This field is required'),
 }).required()
 
 const AddItemForm = ({onSubmited, isSubmiting}: Props) => {
-  const { register, handleSubmit, formState: { errors } } = useForm<TodoItem>({
-    resolver: yupResolver(schema)
+  const {register, handleSubmit, formState: {errors}} = useForm<TodoItem>({
+    resolver: yupResolver(schema),
   })
 
   return (
@@ -61,7 +61,7 @@ const AddItemForm = ({onSubmited, isSubmiting}: Props) => {
         Create
       </button>
     </form>
-  );
+  )
 }
 
 export default AddItemForm

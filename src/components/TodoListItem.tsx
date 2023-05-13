@@ -1,26 +1,26 @@
-import { useNavigate } from 'react-router-dom';
-import { TodoList } from '../types';
+import {useNavigate} from 'react-router-dom'
+import {TodoList} from '../types'
 import TrashIcon from '../components/base/TrashIcon'
 import {useQueryClient, useMutation} from "@tanstack/react-query"
 import {deleteList} from '../api/axios'
-import toast from 'react-hot-toast';
+import toast from 'react-hot-toast'
 
 type Props = {
   list: TodoList
 }
 
-const TodoListItem = ({ list }: Props) => {
+const TodoListItem = ({list}: Props) => {
   const navigate = useNavigate()
   const queryClient = useQueryClient()
 
   const deleteListMutation = useMutation({
     mutationFn: deleteList,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['allLists'] })
+      queryClient.invalidateQueries({queryKey: ['allLists']})
     },
     onError: () => {
       toast(`An error occured while deleting list "${list?.title ?? ''}"`)
-    }
+    },
   })
 
   return (

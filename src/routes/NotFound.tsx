@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import {NavLink} from "react-router-dom"
 
 const NotFound = () => {
   return (
@@ -7,7 +7,7 @@ const NotFound = () => {
       <p>Oh no! Seems we can't find the page you're looking for</p>
       <NavLink to="/" className="text-mist">back home</NavLink>
     </div>
-  );
+  )
 }
 
 export default NotFound

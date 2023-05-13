@@ -1,44 +1,44 @@
-import React, { ReactNode } from "react";
+import React, {ReactNode} from "react"
 import {useEffect, useState, useLayoutEffect} from "react"
 import ReactDOM from 'react-dom'
 
 type Props = {
-  closeFn: () => void;
+  closeFn: () => void
   children: ReactNode
 }
 
 function createWrapperAndAppendToBody(wrapperId: string) {
-  const wrapperElement = document.createElement('div');
-  wrapperElement.setAttribute("id", wrapperId);
-  document.body.appendChild(wrapperElement);
-  return wrapperElement;
+  const wrapperElement = document.createElement('div')
+  wrapperElement.setAttribute("id", wrapperId)
+  document.body.appendChild(wrapperElement)
+  return wrapperElement
 }
 
 const Modal = ({closeFn, children}: Props) => {
-  const [wrapperElement, setWrapperElement] = useState<HTMLElement>();
+  const [wrapperElement, setWrapperElement] = useState<HTMLElement>()
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) closeFn()
   }
 
   useLayoutEffect(() => {
-    let element = document.getElementById('modal');
+    let element = document.getElementById('modal')
     if (!element) {
-      element = createWrapperAndAppendToBody('modal');
+      element = createWrapperAndAppendToBody('modal')
     }
-    setWrapperElement(element);
-  }, []);
+    setWrapperElement(element)
+  }, [])
 
   useEffect(() => {
     const escClose = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeFn();
+      if (e.key === 'Escape') closeFn()
     }
 
-    document.addEventListener('keyup', escClose);
-    document.documentElement.style.overflow = 'hidden';
+    document.addEventListener('keyup', escClose)
+    document.documentElement.style.overflow = 'hidden'
     return () => {
-      document.removeEventListener('keyup', escClose);
-      document.documentElement.style.overflow = 'auto';
+      document.removeEventListener('keyup', escClose)
+      document.documentElement.style.overflow = 'auto'
     }
   }, [closeFn])
 

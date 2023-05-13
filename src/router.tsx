@@ -1,7 +1,7 @@
-import { Route, Routes } from "react-router-dom";
-import NotFound from "./routes/NotFound";
-import ListDetailView from "./routes/ListDetailView";
-import HomeView from "./routes/HomeView";
+import {Route, Routes} from "react-router-dom"
+import NotFound from "./routes/NotFound"
+import ListDetailView from "./routes/ListDetailView"
+import HomeView from "./routes/HomeView"
 
 export default function Router() {
   return (
@@ -10,5 +10,5 @@ export default function Router() {
       <Route path="/list/:id" element={<ListDetailView />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
-  );
+  )
 }

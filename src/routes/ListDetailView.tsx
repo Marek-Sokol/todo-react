@@ -1,5 +1,5 @@
-import {useState, useMemo} from 'react';
-import {useParams, useNavigate} from 'react-router-dom';
+import {useState, useMemo} from 'react'
+import {useParams, useNavigate} from 'react-router-dom'
 import {useQuery, useQueryClient, useMutation} from "@tanstack/react-query"
 import {getList, addItem} from '../api/axios'
 import PlusButton from '../components/base/PlusButton'
@@ -25,7 +25,7 @@ const ListDetailView = () => {
 
   const queryClient = useQueryClient()
 
-  const { isLoading, error, data: list } = useQuery({
+  const {isLoading, error, data: list} = useQuery({
     queryKey: ["getList"],
     queryFn: () => getList(listId as string),
   })
@@ -49,11 +49,11 @@ const ListDetailView = () => {
     onSuccess: () => {
       // Invalidate and refetch
       setModalOpened(false)
-      queryClient.invalidateQueries({ queryKey: ['getList'] })
+      queryClient.invalidateQueries({queryKey: ['getList']})
     },
     onError: (err) => {
       console.log({err})
-    }
+    },
   })
 
   const handleSubmit = (newItem: TodoItem) => {
@@ -117,7 +117,7 @@ const ListDetailView = () => {
         </Modal>
       )}
     </>
-  );
+  )
 }
 
 export default ListDetailView

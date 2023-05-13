@@ -1,6 +1,6 @@
-import { NavLink } from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import Router from './router'
-import { Toaster } from 'react-hot-toast';
+import {Toaster} from 'react-hot-toast'
 
 function App() {
   return (

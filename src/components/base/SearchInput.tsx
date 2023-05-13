@@ -25,7 +25,7 @@ const SearchInput = ({onChange, className, value}: Props) => {
         className={`input input-ghost h-[30px] p-0 border-0 focus:outline-0 overflow-hidden transition-all w-0 focus:w-56 focus:pl-2`}
       />
     </div>
-  );
+  )
 }
 
 export default SearchInput

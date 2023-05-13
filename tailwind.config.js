@@ -9,20 +9,18 @@ export default {
       colors: {
         mist: '#f3f5f8',
         purplerain: {
-            DEFAULT: '#6D2DED',
-            800: '#8f68db',
-            900: '#bfaae7',
+          DEFAULT: '#6D2DED',
+          800: '#8f68db',
+          900: '#bfaae7',
         },
         purpleback: {
-            DEFAULT: '#120724',
-            800: '#291156',
+          DEFAULT: '#120724',
+          800: '#291156',
         },
       },
-      screens: {
-        'xs': '375px',
-      }
     },
   },
+  // eslint-disable-next-line no-undef
   plugins: [require("daisyui")],
   daisyui: {
     themes: false,

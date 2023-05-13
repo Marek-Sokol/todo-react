@@ -4,10 +4,10 @@ import {useQuery, useQueryClient, useMutation} from "@tanstack/react-query"
 import {getAllLists, addList} from '../api/axios'
 import Modal from '../components/base/Modal'
 import {useState} from 'react'
-import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
-import toast from 'react-hot-toast';
+import {useForm} from "react-hook-form"
+import {yupResolver} from '@hookform/resolvers/yup'
+import * as yup from "yup"
+import toast from 'react-hot-toast'
 
 const schema = yup.object({
   title: yup.string().trim()
@@ -19,24 +19,24 @@ const HomeView = () => {
   const [modalOpened, setModalOpened] = useState<boolean>(false)
   const queryClient = useQueryClient()
 
-  const { isLoading, error, data: lists } = useQuery({
+  const {isLoading, error, data: lists} = useQuery({
     queryKey: ["allLists"],
     queryFn: getAllLists,
-  });
+  })
 
   const mutation = useMutation({
     mutationFn: addList,
     onSuccess: () => {
       setModalOpened(false)
-      queryClient.invalidateQueries({ queryKey: ['allLists'] })
+      queryClient.invalidateQueries({queryKey: ['allLists']})
     },
     onError: () => {
       toast('An error occured while creating list')
-    }
+    },
   })
 
-  const { register, handleSubmit, formState: { errors } } = useForm<{title: string}>({
-    resolver: yupResolver(schema)
+  const {register, handleSubmit, formState: {errors}} = useForm<{title: string}>({
+    resolver: yupResolver(schema),
   })
 
   if (error) return <h1 className="text-white text-2xl w-full align-middle">There was a problem loading this content</h1>
@@ -84,7 +84,7 @@ const HomeView = () => {
         </Modal>
       )}
     </>
-  );
+  )
 }
 
 export default HomeView

@@ -2,33 +2,33 @@ import {TodoItem} from '../types'
 import TrashIcon from '../components/base/TrashIcon'
 import {useQueryClient, useMutation} from "@tanstack/react-query"
 import {deleteItem, updateItem} from '../api/axios'
-import toast from 'react-hot-toast';
+import toast from 'react-hot-toast'
 
 type Props = {
-  item: TodoItem;
+  item: TodoItem
 }
 
-const TodoItemBox = ({ item }: Props) => {
+const TodoItemBox = ({item}: Props) => {
   const queryClient = useQueryClient()
 
   const completeItemMutation = useMutation({
     mutationFn: updateItem,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['getList'] })
+      queryClient.invalidateQueries({queryKey: ['getList']})
     },
     onError: () => {
       toast('An error occured while updating item')
-    }
+    },
   })
 
   const deleteItemMutation = useMutation({
     mutationFn: deleteItem,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['getList'] })
+      queryClient.invalidateQueries({queryKey: ['getList']})
     },
     onError: () => {
       toast('An error occured while deleting item')
-    }
+    },
   })
 
   return (
@@ -42,7 +42,7 @@ const TodoItemBox = ({ item }: Props) => {
           completeItemMutation.mutate({
             listId: item.listId,
             itemId: item.id,
-            item: {...item, completed: !item.completed}
+            item: {...item, completed: !item.completed},
           })
         }
       />
