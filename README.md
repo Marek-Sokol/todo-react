@@ -8,6 +8,9 @@ npm ci
 npm run dev
 ```
 
+## Hosted
+[Netlify link](https://noteify-sokol.netlify.app/)
+
 ### Hours worked
 cca: 20h
 
