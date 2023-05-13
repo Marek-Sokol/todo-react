@@ -67,7 +67,7 @@ const TodoItemBox = ({item}: Props) => {
         }
       >
         <TrashIcon
-          className="text-white hover:text-red-700 transition-all ease-in-out delay-150"
+          className="text-white hover:text-red-700 transition-all ml-5"
           width={25}
           height={25}
         />

@@ -36,7 +36,7 @@ const TodoListItem = ({list}: Props) => {
         }
       >
         <TrashIcon
-          className="text-white hover:text-red-700 transition-all ease-in-out delay-150 my-auto"
+          className="text-white hover:text-red-700 transition-all my-auto ml-3"
           width={20}
           height={20}
         />

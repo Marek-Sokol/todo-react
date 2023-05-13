@@ -9,7 +9,7 @@ npm run dev
 ```
 
 ### Hours worked
-cca: 18h
+cca: 20h
 
 ## Zadanie
 
