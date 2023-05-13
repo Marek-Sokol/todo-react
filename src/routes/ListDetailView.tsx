@@ -26,7 +26,7 @@ const ListDetailView = () => {
   const queryClient = useQueryClient()
 
   const {isLoading, error, data: list} = useQuery({
-    queryKey: ["getList"],
+    queryKey: ["getList", listId],
     queryFn: () => getList(listId as string),
   })
 
@@ -49,7 +49,7 @@ const ListDetailView = () => {
     onSuccess: () => {
       // Invalidate and refetch
       setModalOpened(false)
-      queryClient.invalidateQueries({queryKey: ['getList']})
+      queryClient.invalidateQueries({queryKey: ['getList', listId]})
     },
     onError: (err) => {
       console.log({err})
