@@ -21,7 +21,7 @@ const schema = yup.object({
     .required('This field is required')
 }).required()
 
-const AddItemForm: React.FC<Props> = ({onSubmited, isSubmiting}) => {
+const AddItemForm = ({onSubmited, isSubmiting}: Props) => {
   const { register, handleSubmit, formState: { errors } } = useForm<TodoItem>({
     resolver: yupResolver(schema)
   })

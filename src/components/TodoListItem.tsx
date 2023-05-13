@@ -6,10 +6,10 @@ import {deleteList} from '../api/axios'
 import toast from 'react-hot-toast';
 
 type Props = {
-  list: TodoList;
+  list: TodoList
 }
 
-const TodoListItem: React.FC<Props> = ({ list }) => {
+const TodoListItem = ({ list }: Props) => {
   const navigate = useNavigate()
   const queryClient = useQueryClient()
 
@@ -29,15 +29,18 @@ const TodoListItem: React.FC<Props> = ({ list }) => {
       onClick={() => navigate(`/list/${list.id}`)}
     >
       <strong className="whitespace-nowrap overflow-ellipsis overflow-hidden">{list.title}</strong>
-      <TrashIcon
-        className="cursor-pointer text-white hover:text-red-700 transition-all ease-in-out delay-150 my-auto"
-        width={20}
-        height={20}
-        onClick={(e: MouseEvent) => {
+      <button
+        onClick={(e: React.MouseEvent) => {
           e.stopPropagation()
           deleteListMutation.mutate(list.id)}
         }
-      />
+      >
+        <TrashIcon
+          className="text-white hover:text-red-700 transition-all ease-in-out delay-150 my-auto"
+          width={20}
+          height={20}
+        />
+      </button>
     </div>
   )
 }

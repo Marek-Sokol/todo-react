@@ -1,9 +1,10 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import {useEffect, useState, useLayoutEffect} from "react"
 import ReactDOM from 'react-dom'
 
 type Props = {
   closeFn: () => void;
+  children: ReactNode
 }
 
 function createWrapperAndAppendToBody(wrapperId: string) {
@@ -13,7 +14,7 @@ function createWrapperAndAppendToBody(wrapperId: string) {
   return wrapperElement;
 }
 
-const Modal: React.FC<Props> = ({closeFn, children}) => {
+const Modal = ({closeFn, children}: Props) => {
   const [wrapperElement, setWrapperElement] = useState<HTMLElement>();
 
   const handleBackdropClick = (e: React.MouseEvent) => {

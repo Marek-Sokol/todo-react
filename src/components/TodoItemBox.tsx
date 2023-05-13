@@ -8,7 +8,7 @@ type Props = {
   item: TodoItem;
 }
 
-const TodoItemBox: React.FC<Props>  = ({ item }) => {
+const TodoItemBox = ({ item }: Props) => {
   const queryClient = useQueryClient()
 
   const completeItemMutation = useMutation({
@@ -47,7 +47,7 @@ const TodoItemBox: React.FC<Props>  = ({ item }) => {
         }
       />
       <div className="flex flex-col grow gap-2">
-        <section className="text-white text-lg font-bold capitalize">
+        <section className="text-white text-lg font-bold">
           {item.title}
         </section>
         <section className="text-mist">
@@ -57,10 +57,7 @@ const TodoItemBox: React.FC<Props>  = ({ item }) => {
           {`${new Date(item.deadline).toDateString()} ${new Date(item.deadline).toLocaleTimeString()}`}
         </section>
       </div>
-      <TrashIcon
-        className="cursor-pointer text-white hover:text-red-700 transition-all ease-in-out delay-150"
-        width={25}
-        height={25}
+      <button
         disabled={completeItemMutation.isLoading || deleteItemMutation.isLoading}
         onClick={() =>
           deleteItemMutation.mutate({
@@ -68,7 +65,13 @@ const TodoItemBox: React.FC<Props>  = ({ item }) => {
             itemId: item.id,
           })
         }
-      />
+      >
+        <TrashIcon
+          className="text-white hover:text-red-700 transition-all ease-in-out delay-150"
+          width={25}
+          height={25}
+        />
+      </button>
     </div>
   )
 }

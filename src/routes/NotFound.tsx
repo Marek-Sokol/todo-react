@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-export default function NotFound() {
+const NotFound = () => {
   return (
     <div className="mt-16 w-full h-full text-white flex items-center justify-center flex-col gap-2 flex-1">
       <h1 className="text-9xl">404</h1>
@@ -9,3 +9,5 @@ export default function NotFound() {
     </div>
   );
 }
+
+export default NotFound

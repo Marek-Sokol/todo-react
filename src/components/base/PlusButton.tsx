@@ -3,7 +3,7 @@ type Props = {
   className?: string
 }
 
-const PlusButton: React.FC<Props> = ({ onClick, className }) => {
+const PlusButton = ({ onClick, className }: Props) => {
   return (
     <button
       className={`btn btn-circle hover:bg-purplerain-800 bg-purplerain shadow-lg shadow-purpleback ${className}`}

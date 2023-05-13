@@ -15,11 +15,10 @@ enum ActiveGroupEnum {
   PENDING = 'pending',
 }
 
-const ListDetailView: React.FC = () => {
+const ListDetailView = () => {
   const [modalOpened, setModalOpened] = useState<boolean>(false)
   const [activeGroup, setActiveGroup] = useState<ActiveGroupEnum>(ActiveGroupEnum.ALL)
-
-  // const activeGroupitems = useMemo(() => {}, [])
+  const [searchText, setSearchText] = useState<string>('')
 
   const navigate = useNavigate()
   const {id: listId} = useParams()
@@ -29,9 +28,21 @@ const ListDetailView: React.FC = () => {
   const { isLoading, error, data: list } = useQuery({
     queryKey: ["getList"],
     queryFn: () => getList(listId as string),
-  });
+  })
 
-  if (listId == null || error != null) navigate('/404')
+  const activeGroupitems = useMemo(() => {
+    if (activeGroup === ActiveGroupEnum.ALL) return list?.items ?? []
+    if (activeGroup === ActiveGroupEnum.PENDING) return list?.items?.filter(item => !item.completed) ?? []
+    return list?.items?.filter(item => item.completed) ?? []
+  }, [list, activeGroup])
+
+  const filteredActiveItems = useMemo(() => {
+    if (searchText == null || searchText === '') return activeGroupitems
+    const regexObj = new RegExp(searchText)
+    return activeGroupitems.filter(item => regexObj.test(item.title) || regexObj.test(item.content))
+  }, [activeGroupitems, searchText])
+
+  if (listId == null || error != null || (list == null && !isLoading)) navigate('/404')
 
   const addItemMutation = useMutation({
     mutationFn: addItem,
@@ -71,25 +82,25 @@ const ListDetailView: React.FC = () => {
             ></div>
           ))
         )}
-        {!isLoading && list != null && (
-          list.items.length > 0
+        {!isLoading && list?.items.length === 0 && ((
+          <>
+            <p className="w-full mt-16 text-white font-bold text-center">There are no items in this list yet</p>
+            <button
+              className="button-style m-auto mt-5"
+              onClick={() => setModalOpened(true)}
+            >
+              Create your firs item
+            </button>
+          </>
+        ))}
+        {!isLoading && list != null && list.items.length > 0 && (filteredActiveItems.length > 0
           ? (
-            list?.items?.map((item) => (
+            filteredActiveItems.map((item) => (
               <TodoItemBox key={item.id} item={item}/>
-            ))
-          )
+            )))
           : (
-            <>
-              <p className="w-full mt-16 text-white font-bold text-center">There are no items in this list yet</p>
-              <button
-                className="button-style m-auto mt-5"
-                onClick={() => setModalOpened(true)}
-              >
-                Create your firs item
-              </button>
-            </>
-          )
-        )}
+            <p className="w-full mt-16 text-white font-bold text-center">There are no items matching your search</p>          
+          ))}
       </div>
       <PlusButton
         className="fixed bottom-4 right-4"
@@ -97,7 +108,8 @@ const ListDetailView: React.FC = () => {
       />
       <SearchInput
         className="fixed bottom-20 right-4"
-        onChange={(e) => console.log(e)}
+        onChange={(e) => setSearchText(e)}
+        value={searchText}
       />
       {modalOpened && (
         <Modal closeFn={() => setModalOpened(false)}>

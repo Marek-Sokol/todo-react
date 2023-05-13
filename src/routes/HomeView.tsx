@@ -15,7 +15,7 @@ const schema = yup.object({
     .min(2, 'Should be at least 2 characters long'),
 }).required()
 
-const HomeView: React.FC = () => {
+const HomeView = () => {
   const [modalOpened, setModalOpened] = useState<boolean>(false)
   const queryClient = useQueryClient()
 

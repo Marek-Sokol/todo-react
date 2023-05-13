@@ -3,7 +3,6 @@ import Router from './router'
 import { Toaster } from 'react-hot-toast';
 
 function App() {
-
   return (
     <div className="bg-gradient-to-bl from-purpleback via-purpleback-800 to-purpleback p-4 min-h-screen relative">
       <NavLink
