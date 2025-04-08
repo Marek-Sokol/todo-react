@@ -1,5 +1,4 @@
-import {NavLink} from 'react-router-dom'
-import Router from './router'
+import {NavLink, Outlet} from 'react-router'
 import {Toaster} from 'react-hot-toast'
 
 function App() {
@@ -11,7 +10,7 @@ function App() {
       >
         <i className="flex flex-row">note<p className="text-white">ify</p></i>
       </NavLink>
-      <Router />
+      <Outlet />
       <Toaster
         position="bottom-center"
         toastOptions={{

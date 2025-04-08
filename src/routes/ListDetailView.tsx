@@ -1,5 +1,5 @@
 import {useState, useMemo} from 'react'
-import {useParams, useNavigate} from 'react-router-dom'
+import {useParams, useNavigate} from 'react-router'
 import {useQuery, useQueryClient, useMutation} from "@tanstack/react-query"
 import {getList, addItem} from '../api/axios'
 import PlusButton from '../components/base/PlusButton'

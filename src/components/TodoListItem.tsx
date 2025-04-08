@@ -1,4 +1,4 @@
-import {useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router'
 import {TodoList} from '../types'
 import TrashIcon from '../components/base/TrashIcon'
 import {useQueryClient, useMutation} from "@tanstack/react-query"

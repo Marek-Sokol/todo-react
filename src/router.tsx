@@ -1,14 +1,28 @@
-import {Route, Routes} from "react-router-dom"
+import {createBrowserRouter} from "react-router"
+
 import NotFound from "./routes/NotFound"
 import ListDetailView from "./routes/ListDetailView"
 import HomeView from "./routes/HomeView"
+import App from "./App"
 
-export default function Router() {
-  return (
-    <Routes>
-      <Route path="/" element={<HomeView />} />
-      <Route path="/list/:id" element={<ListDetailView />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  )
-}
+const router = createBrowserRouter([
+  {
+    Component: App,
+    children: [
+      {
+        path: "/",
+        Component: HomeView,
+      },
+      {
+        path: "list/:id",
+        Component: ListDetailView,
+      },
+      {
+        path: "*",
+        Component: NotFound,
+      },
+    ],
+  },
+])
+
+export default router
